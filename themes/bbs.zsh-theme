@@ -47,7 +47,7 @@ function setprompt {
 
   PROMPT='${(e)PR_TOP_LINE}
 %{$FG[256]%}│$FG[245] $PR_USER_SYMBOL  %{$FG[040]%}$PR_USER%{$reset_color%} %{$FG[239]%}at%{$reset_color%} %{$FG[033]%}$PR_BOX%{$reset_color%} %{$FG[239]%}in%{$reset_color%} %{$terminfo[bold]$FG[226]%}$PR_PWD%{$reset_color%}$PR_GIT_INFO${(e)PR_RIGHT_END}
-%{$FG[256]%}╰─$FG[245]─$FG[239]╶%{$reset_color%}'
+%{$FG[256]%}╰─$FG[245]─$FG[239]╶%{$reset_color%} '
 
   RPROMPT='%F{239}╴%F{245}─%f┘'
 
