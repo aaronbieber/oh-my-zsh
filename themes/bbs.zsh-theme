@@ -3,14 +3,6 @@
 # Inspired by my formative BBS and IRC years, based on the Fino and Jonathan 
 # themes from oh-my-zsh.
 
-function virtualenv_info {
-    [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
-}
-
-function box_name {
-    [ -f ~/.box-name ] && cat ~/.box-name || hostname -s
-}
-
 function theme_precmd {
   COLS=$(( ($COLUMNS - 8) / 3 ))
   COLS_MIDDLE=$COLS
@@ -46,15 +38,6 @@ function theme_precmd {
   fi
 }
 
-local rvm_ruby=''
-if which rvm-prompt &> /dev/null; then
-  rvm_ruby='‹$(rvm-prompt i v g)›%{$reset_color%}'
-else
-  if which rbenv &> /dev/null; then
-    rvm_ruby='‹$(rbenv version | sed -e "s/ (set.*$//")›%{$reset_color%}'
-  fi
-fi
-
 function setprompt {
   setopt prompt_subst
   autoload colors zsh/terminfo
@@ -64,7 +47,7 @@ function setprompt {
 
   PROMPT='${(e)PR_TOP_LINE}
 %{$FG[256]%}│$FG[245] $PR_USER_SYMBOL  %{$FG[040]%}$PR_USER%{$reset_color%} %{$FG[239]%}at%{$reset_color%} %{$FG[033]%}$PR_BOX%{$reset_color%} %{$FG[239]%}in%{$reset_color%} %{$terminfo[bold]$FG[226]%}$PR_PWD%{$reset_color%}$PR_GIT_INFO${(e)PR_RIGHT_END}
-%{$FG[256]%}╰─$FG[245]─$FG[239]╶%{$reset_color%} $(virtualenv_info)'
+%{$FG[256]%}╰─$FG[245]─$FG[239]╶%{$reset_color%}'
 
   RPROMPT='%F{239}╴%F{245}─%f┘'
 
@@ -78,6 +61,5 @@ setprompt
 
 autoload -U add-zsh-hook
 add-zsh-hook precmd  theme_precmd
-#add-zsh-hook preexec theme_preexec
 
 # vim: set et ts=2 sw=2 ft=zsh:
