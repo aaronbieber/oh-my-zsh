@@ -1,15 +1,7 @@
-# Fino theme by Max Masnick (http://max.masnick.me)
-
-# Use with a dark background and 256-color terminal!
-# Meant for people with RVM and git. Tested only on OS X 10.7.
-
-# You can set your computer name in the ~/.box-name file if you want.
-
-# Borrowing shamelessly from these oh-my-zsh themes:
-#   bira
-#   robbyrussell
+# BBS theme by Aaron Bieber (github.com/aaronbieber)
 #
-# Also borrowing from http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
+# You can set your computer name in the ~/.box-name file if you want.
+# Based (loosely) on fino, supporting git and basic shell stuff.
 
 function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
