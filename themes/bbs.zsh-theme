@@ -31,9 +31,9 @@ function theme_precmd {
   PR_GIT_INFO=`git_prompt_info`
   PR_GIT=`print -P $PR_GIT_INFO`
 
-  PR_LEN=$(( 4 + ${#PR_USER} + ${#PR_BOX} + ${#PR_PWD} ))
+  PR_LEN=$(( 13 + ${#PR_USER} + ${#PR_BOX} + ${#PR_PWD} ))
   if [ "$PR_GIT_INFO" != "" ]; then
-    PR_LEN=$(( $PR_LEN + (${#PR_GIT} - 32) ))
+    PR_LEN=$(( $PR_LEN + (${#PR_GIT_INFO} - 25) ))
   fi
   PR_PAD=$(( $COLUMNS - $PR_LEN ))
 
@@ -59,8 +59,8 @@ ${(e)PR_RIGHT_END}
 
   ZSH_THEME_GIT_PROMPT_PREFIX=" %F{024}⭠%f %F{075}"
   ZSH_THEME_GIT_PROMPT_SUFFIX="%f"
-  ZSH_THEME_GIT_PROMPT_DIRTY=" %{$FG[202]%}✘"
-  ZSH_THEME_GIT_PROMPT_CLEAN=" %{$FG[040]%}✔"
+  ZSH_THEME_GIT_PROMPT_DIRTY=" %F{202}✘"
+  ZSH_THEME_GIT_PROMPT_CLEAN=" %F{040}✔"
 }
 
 function theme_preexec {
