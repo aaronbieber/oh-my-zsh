@@ -30,9 +30,7 @@ function theme_precmd {
   fi
 
   # This is the actual top line. I know, kind of complicated. Sorry.
-  PR_TOP_LINE='%F{256}┌─%F{245}─%F{240}─%{${(l:$COLS::─:)}%}\
-%F{237}───╶╶%{${(l:$COLS_MIDDLE:: :)}%}%F{237}╴╴───\
-%F{240}%{${(l:$COLS::─:)}%}%F{245}──%F{256}─┐'
+  PR_TOP_LINE='%F{256}┌─%F{245}─%F{240}─%{${(l:$COLS::─:)}%}%F{237}───╶╶'
 
   # Now build up the data segments for the actual prompt line.
   PR_RETURN_STATUS="%(?:%F{040}☼:%F{202}%}☹%f%b)"
@@ -65,14 +63,13 @@ function theme_precmd {
 
   # Set up the whole prompt string.
   PR_PROMPT='${(e)PR_TOP_LINE}
-%F{256}│%F{245} $PR_RETURN_STATUS  $PR_DATA_LINE${(e)PR_RIGHT_END}
+%F{256}│%F{245} $PR_RETURN_STATUS  $PR_DATA_LINE
 %F{256}╰─%F{245}─%F{239}╶%f '
 
   # Calculate how long to make the bottom right edge of the box and generate 
   # it, then set it in the RPROMPT string.
   RIGHT_LINE_LEN=$(( $COLS_MIDDLE / 2 ))
   RIGHT_LINE=${(l:$RIGHT_LINE_LEN::─:)}
-  PR_RPROMPT='%F{239} ╴ ╴╴$RIGHT_LINE%F{245}─%F{256}┘'
 }
 
 setopt prompt_subst
