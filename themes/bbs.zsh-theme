@@ -78,7 +78,7 @@ autoload colors zsh/terminfo
 # Set the prompts to the variables that will be  calculated in the precmd 
 # function.
 PROMPT='${(e)PR_PROMPT}'
-RPROMPT='${(e)PR_RPROMPT}'
+#RPROMPT='${(e)PR_RPROMPT}'
 
 # Set up these various git prompt plug-in strings to match the rest of the 
 # prompt.
@@ -90,5 +90,45 @@ ZSH_THEME_GIT_PROMPT_CLEAN=" %F{040}✔"
 # Load hook support and set up the precmd hook.
 autoload -U add-zsh-hook
 add-zsh-hook precmd theme_precmd
+
+# Set up Vi mode indicator. Taken from Github here:
+# /robbyrussell/oh-my-zsh/blob/master/plugins/vi-mode/vi-mode.plugin.zsh
+# This doesn't seem to affect anything if Vi mode is not turned on, so I think
+# it's safe to leave in the theme all the time.
+################################################################################
+
+# Ensures that $terminfo values are valid and updates editor information when
+# the keymap changes.
+function zle-keymap-select zle-line-init zle-line-finish {
+  # The terminal must be in application mode when ZLE is active for $terminfo
+  # values to be valid.
+  if (( ${+terminfo[smkx]} )); then
+    printf '%s' ${terminfo[smkx]}
+  fi
+  if (( ${+terminfo[rmkx]} )); then
+    printf '%s' ${terminfo[rmkx]}
+  fi
+
+  zle reset-prompt
+  zle -R
+}
+
+zle -N zle-line-init
+zle -N zle-line-finish
+zle -N zle-keymap-select
+
+# if mode indicator wasn't setup by theme, define default
+if [[ "$MODE_INDICATOR" == "" ]]; then
+  MODE_INDICATOR="%{$fg_bold[white]%}-- NORMAL --%{$reset_color%}"
+fi
+
+function vi_mode_prompt_info() {
+  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
+}
+
+# define right prompt, if it wasn't defined by a theme
+if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
+  RPS1='$(vi_mode_prompt_info)'
+fi
 
 # vim: set et ts=2 sw=2 ft=zsh:
