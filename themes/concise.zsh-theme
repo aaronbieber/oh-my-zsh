@@ -23,7 +23,7 @@ function theme_precmd {
   path_line="$path_line/${path_parts[$path_parts_len]}"
 }
 
-PROMPT='%F{026}$path_line$(git_prompt_info)%F{256} %# %{$reset_color%}'
+PROMPT='%F{123}%m:%F{026}$path_line$(git_prompt_info)%F{256} %# %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %F{166}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
