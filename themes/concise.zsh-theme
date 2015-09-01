@@ -16,8 +16,8 @@ function theme_precmd {
 
   path_line=""
   for part in $path_parts_short; do
-    # Append the first letter of each part to the path string
-    path_line="$path_line/${part[1]}"
+    # Append the first two letters of each part to the path string
+    path_line="$path_line/${part[1,2]}"
   done
   # Add the last element (the current directory name) in full
   path_line="$path_line/${path_parts[$path_parts_len]}"
