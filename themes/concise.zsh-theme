@@ -23,12 +23,12 @@ function theme_precmd {
   path_line="$path_line/${path_parts[$path_parts_len]}"
 }
 
-PROMPT='%F{123}%m:%F{026}$path_line$(git_prompt_info)%F{256} %# %{$reset_color%}'
+PROMPT='%F{cyan}%m:%F{green}$path_line$(git_prompt_info)%F{256} %# %{$reset_color%}'
 
-ZSH_THEME_GIT_PROMPT_PREFIX=" %F{166}"
+ZSH_THEME_GIT_PROMPT_PREFIX=" %F{yellow}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%F{094} %F{160}✗%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%F{094} %F{034}✔%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%F{094} $fg_bold[red]✗%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%F{094} $fg_bold[green]✔%{$reset_color%}"
 
 autoload -U add-zsh-hook
 add-zsh-hook precmd theme_precmd
