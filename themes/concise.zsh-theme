@@ -27,8 +27,8 @@ PROMPT='%F{cyan}%m:%F{green}$path_line$(git_prompt_info)%F{256} %# %{$reset_colo
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %F{yellow}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%F{094} $fg_bold[red]✗%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%F{094} $fg_bold[green]✔%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%F{094} %F{red}%B✗%b%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%F{094} %F{green}%B✔%b%{$reset_color%}"
 
 autoload -U add-zsh-hook
 add-zsh-hook precmd theme_precmd
